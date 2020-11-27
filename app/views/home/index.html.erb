@@ -1,0 +1,16 @@
+Стартовая страница!
+
+<% @outfits.each do |outfit| %>
+<div class="outfit">
+  <%= link_to outfit.id, "/home/choose_outfit/#{outfit.id}"  %>
+  <% outfit.items.each do |item| %>
+    <div class="item">
+      <%= item.name %>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<div>
+  У вас есть <%= @unrated.size %> неоценненных наборов одежды!
+</div>

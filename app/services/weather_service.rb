@@ -6,12 +6,17 @@ class WeatherService
         access_key: ENV['WEATHER_KEY'],
         query: location
     }
-    puts params
     uri = URI('http://api.weatherstack.com/current')
     uri.query = URI.encode_www_form(params)
     json = Net::HTTP.get(uri)
-    api_response = JSON.parse(json)
-    puts api_response
-    puts "Current temperature in #{api_response['location']['name']} is #{api_response['current']['temperature']}"
+    data = JSON.parse(json)
+    weather = data['current']
+    {
+        temp: weather['temperature'],
+        humidity: weather['humidity'],
+        wind_speed: weather['wind_speed'],
+        feels_like: weather['feelslike'],
+        description: weather['weather_descriptions'].first
+    }
   end
 end

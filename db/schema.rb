@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_135214) do
+ActiveRecord::Schema.define(version: 2020_11_27_120325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,9 +77,17 @@ ActiveRecord::Schema.define(version: 2020_11_26_135214) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "verified_outfits", force: :cascade do |t|
+    t.bigint "outfit_id"
+    t.bigint "weather_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["outfit_id"], name: "index_verified_outfits_on_outfit_id"
+    t.index ["weather_id"], name: "index_verified_outfits_on_weather_id"
+  end
+
   create_table "weathers", force: :cascade do |t|
     t.string "description"
-    t.string "name", null: false
     t.integer "temp"
     t.integer "humidity"
     t.datetime "created_at", precision: 6, null: false

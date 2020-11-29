@@ -1,4 +1,6 @@
 class Weather < ApplicationRecord
-  validates :name, presence: true
   has_many :outfit_histories, dependent: :destroy
+  def desc
+    "#{temp} - #{humidity}- #{created_at}"
+  end
 end

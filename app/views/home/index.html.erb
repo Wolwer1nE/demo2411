@@ -1,8 +1,19 @@
 Стартовая страница!
+<% if @weather.present? %>
+ <div>
+   Погода в вашем районе: <%= @weather.description %>, температура <%= @weather.temp %>
+ </div>
+<% else %>
+  <%= form_with url: '/select_location', method: :post do |form|  %>
+    <%= form.label :location, 'Где вы находитесь?' %>
+    <%= form.text_field :location %>
+    <%= form.submit 'Отправить'%>
+  <% end %>
+<% end %>
 
 <% @outfits.each do |outfit| %>
 <div class="outfit">
-  <%= link_to outfit.id, "/home/choose_outfit/#{outfit.id}"  %>
+  <%= link_to outfit.id, "/choose_outfit/#{outfit.id}"  %>
   <% outfit.items.each do |item| %>
     <div class="item">
       <%= item.name %>

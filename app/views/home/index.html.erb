@@ -11,16 +11,11 @@
   <% end %>
 <% end %>
 
-<% @outfits.each do |outfit| %>
-<div class="outfit">
-  <%= link_to outfit.id, "/choose_outfit/#{outfit.id}"  %>
-  <% outfit.items.each do |item| %>
-    <div class="item">
-      <%= item.name %>
-    </div>
+<div class="outfit-container">
+  <% @outfits.each do |outfit| %>
+   <%= render partial: 'outfit', object: outfit %>
   <% end %>
 </div>
-<% end %>
 
 <div>
   У вас есть <%= @unrated.size %> неоценненных наборов одежды!

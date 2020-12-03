@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/choose_outfit/:id', to: 'home#choose_outfit'
   get '/select_location', to: 'home#select_location'
   post '/select_location', to: 'home#select_location'
+  get '/map', to: 'map#index'
 end

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @outfits = Outfit.all
+    @outfits = Outfit.all.preload(:items)
     @unrated = OutfitHistory.all
     if params[:weather_id].present?
       @weather = Weather.find(params[:weather_id])
